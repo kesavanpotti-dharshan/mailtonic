@@ -5,18 +5,28 @@ export default function App() {
     const [input, setInput] = useState("");
     const [tone, setTone] = useState("Professional");
     const [output, setOutput] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [enhancedEmail, setEnhancedEmail] = useState("");
 
     const handleEnhance = () => {
         // Dummy logic for now
-        setOutput(`🔍 Enhancing email in "${tone}" tone...\n\n${input}`);
+        //setOutput(`🔍 Enhancing email in "${tone}" tone...\n\n${input}`);
+        setIsLoading(true);
+        setEnhancedEmail("");
+
+        // Simulate API call delay
+        setTimeout(() => {
+            setIsLoading(false);
+            setEnhancedEmail("Dear John,\n\nThank you for reaching out. I'm happy to assist you with your query...\n\nBest regards,\nJane");
+        }, 3000);
     };
 
     return (
         <div className="min-h-screen text-gray-800 p-6">
             <div className="max-w-3xl mx-auto bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl shadow-2xl p-8">
-                <h1 className="text-4xl font-extrabold text-blue-700 mb-8 text-center">
+                <h3 className="text-4xl font-extrabold text-blue-600 mb-8 text-center">
                     ✨ MailTonic – AI Email Enhancer
-                </h1>
+                </h3>
 
                 <textarea
                     className="w-full h-40 p-4 border rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-400 mb-6 text-gray-700 placeholder-gray-400"
@@ -44,6 +54,19 @@ export default function App() {
                     >
                         Enhance Email
                     </button>
+                    {isLoading && (
+                        <div className="mt-4 text-center">
+                            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto mb-2"></div>
+                            <p className="text-blue-600 font-medium">Enhancing...</p>
+                        </div>
+                    )}
+
+                    {!isLoading && enhancedEmail && (
+                        <div className="mt-6 p-4 bg-gray-50 border-l-4 border-blue-400 rounded">
+                            <h2 className="text-lg font-semibold mb-2 text-gray-700">Enhanced Email</h2>
+                            <pre className="whitespace-pre-wrap text-gray-800">{enhancedEmail}</pre>
+                        </div>
+                    )}
                 </div>
 
                 {output && (

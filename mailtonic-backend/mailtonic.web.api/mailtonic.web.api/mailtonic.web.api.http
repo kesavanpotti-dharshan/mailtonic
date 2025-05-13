@@ -1,0 +1,6 @@
+@mailtonic.web.api_HostAddress = http://localhost:5074
+
+GET {{mailtonic.web.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

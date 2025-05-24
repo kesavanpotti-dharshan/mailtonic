@@ -4,7 +4,7 @@ import './App.css';
 export default function App() {
     const [input, setInput] = useState("");
     const [tone, setTone] = useState("Professional");
-    const [output, setOutput] = useState("");
+    const [output] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [enhancedEmail, setEnhancedEmail] = useState("");
 
